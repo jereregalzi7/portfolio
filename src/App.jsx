@@ -1,0 +1,289 @@
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { Github, Linkedin, Mail, ExternalLink, ChevronRight, FileDown } from "lucide-react";
+import ScrollProgress from "./ScrollProgress";
+
+const PROFILE = {
+  name: "Jeremías Regalzi",
+  role: "Frontend & Full‑Stack Developer",
+  location: "CABA, AR",
+  summary:
+    "Diseño interfaces frontend rápidas, claras y escalables con React + Tailwind. Egresado de Escuela Da Vinci. Actualmente cursando Análisis de Sistemas.",
+  links: {
+    github: "https://github.com/jereregalzi7",
+    linkedin: "https://www.linkedin.com/in/jeremias-regalzi-253417248/",
+    email: "mailto:jereregalzi93@gmail.com",
+    cv: "/cv-jeremias-regalzi.pdf"
+  },
+  skills: [
+    "React","Vite","TailwindCSS","JavaScript","TypeScript",
+    "Node.js","Express","Laravel","PHP","Firebase",
+    "PostgreSQL","MySQL","MongoDB","Vue.js","Figma"
+  ],
+};
+
+const PROJECTS = [
+  {
+    title: "PIRtech — Catálogo + Presupuesto",
+    description:
+      "Sitio tipo catálogo con filtros, ficha de producto y sistema de solicitud de presupuesto. UX minimalista, moderna y responsive.",
+    highlights: ["Filtros dinámicos", "Estado del presupuesto en Navbar", "Placeholders por categoría"],
+    stack: ["React", "Vite", "Tailwind", "Node"],
+    repo: "https://github.com/jereregalzi7/pirtech",
+    demo: "https://pirtech.netlify.app/",
+    image: "/assets/pirtech-home.png",
+  },
+];
+
+const EXPERIENCE = [
+  {
+    company: "SsyscTech",
+    role: "Diseñador UX/UI",
+    period: "2023 — Actualidad",
+    bullets: [
+      "Mapeo de customer journey y arquitectura de información.",
+      "Prototipado y comunicación de soluciones centradas en el usuario.",
+      "Priorización de funcionalidades y colaboración con equipos.",
+      "Diseño de interfaces responsivas y accesibles.",
+      "Creación de guías de estilo y componentes reutilizables.",
+      "Pruebas de usabilidad y análisis de métricas.",
+      "Iteración basada en feedback de usuarios y stakeholders.",
+      "Colaboración con desarrolladores para asegurar implementación fiel al diseño.",
+      "Metodologías ágiles (Scrum) para gestión de proyectos.",
+      "Comunicación efectiva con equipos multidisciplinarios.",
+      "Adaptación a nuevas herramientas y tecnologías según necesidades del proyecto.",
+      "Trabajo en proyectos variados: web apps, mobile apps, dashboards administrativos.",
+    ],
+  },
+  {
+    company: "Freelance",
+    role: "Desarrollador Full‑Stack",
+    period: "2022 — Actualidad",
+    bullets: [
+      "Frontend con React + Tailwind y Vue.",
+      "Backends con Node/Express y Laravel (REST, JWT auth, CRUD).",
+      "BD: PostgreSQL/MySQL/MongoDB. Deploy en Netlify/Vercel/Render.",
+    ],
+  },
+  {
+    company: "Proyectos académicos — Escuela Da Vinci",
+    role: "Desarrollador Web",
+    period: "2022 — 2024",
+    bullets: [
+      "Apps con autenticación, subida de archivos e interfaces responsive.",
+      "Integración con Firebase y consumo de APIs.",
+      "Trabajo en equipo y control de versiones con Git/GitHub.",
+    ],
+  },
+];
+
+const EDUCATION = [
+  { school: "Escuela Da Vinci", degree: "Diseño y Programación Web (egresado)", period: "2022 — 2024" },
+  { school: "Escuela Da Vinci", degree: "Análisis de Sistemas (en curso)", period: "2025 — Actualidad" },
+];
+
+function Section({ id, title, children }) {
+  return (
+    <motion.section
+      id={id}
+      className="scroll-mt-24"
+      initial={{ opacity: 0, y: 18 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.4, ease: "easeOut" }}
+    >
+      <h2 className="text-2xl md:text-3xl font-semibold tracking-tight">{title}</h2>
+      <div className="mt-4">{children}</div>
+    </motion.section>
+  );
+}
+
+function Tag({ children }) {
+  return (<span className="inline-flex items-center rounded-full border px-3 py-1 text-sm">{children}</span>);
+}
+
+function Card({ children, className = "" }) {
+  return (<div className={`rounded-2xl border p-5 shadow-sm bg-white/60 dark:bg-zinc-900/60 backdrop-blur ${className}`}>{children}</div>);
+}
+
+function Navbar() {
+  const [open, setOpen] = useState(false);
+  const links = [
+    { href: "#about", label: "Sobre mí" },
+    { href: "#projects", label: "Proyectos" },
+    { href: "#experience", label: "Experiencia" },
+    { href: "#education", label: "Educación" },
+    { href: "#contact", label: "Contacto" },
+  ];
+  return (
+    <div className="sticky top-0 z-30 bg-gradient-to-b from-white/90 to-white/40 dark:from-zinc-950/90 dark:to-zinc-950/40 backdrop-blur border-b">
+      <nav className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
+        <a href="#" className="font-semibold tracking-tight">{PROFILE.name}</a>
+        <button className="md:hidden" onClick={() => setOpen(!open)} aria-label="Abrir menú">
+          <ChevronRight className={`transition-transform ${open ? "rotate-90" : ""}`} />
+        </button>
+        <ul className="hidden md:flex gap-6 text-sm">
+          {links.map((l) => (<li key={l.href}><a className="hover:underline underline-offset-4" href={l.href}>{l.label}</a></li>))}
+        </ul>
+      </nav>
+      {open && (
+        <div className="md:hidden border-t">
+          <ul className="mx-auto max-w-6xl px-4 py-3 space-y-3">
+            {links.map((l) => (<li key={l.href}><a className="block" href={l.href}>{l.label}</a></li>))}
+          </ul>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function Hero() {
+  return (
+    <header className="mx-auto max-w-6xl px-4 pt-10 pb-12">
+      <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+          <div>
+            <h1 className="text-3xl md:text-5xl font-bold tracking-tight">
+              {PROFILE.role} <span className="text-blue-700">/ Portfolio</span>
+            </h1>
+            <p className="mt-4 max-w-2xl text-zinc-700 dark:text-zinc-200">
+              {PROFILE.summary}
+            </p>
+            <div className="mt-6 flex flex-wrap gap-2">
+              {PROFILE.skills.map((s) => (<Tag key={s}>{s}</Tag>))}
+            </div>
+            <div className="mt-6 flex items-center gap-4 text-sm">
+              <a className="inline-flex items-center gap-2 underline underline-offset-4" href={PROFILE.links.github} target="_blank" rel="noreferrer"><Github size={18}/> GitHub</a>
+              <a className="inline-flex items-center gap-2 underline underline-offset-4" href={PROFILE.links.linkedin} target="_blank" rel="noreferrer"><Linkedin size={18}/> LinkedIn</a>
+              <a className="inline-flex items-center gap-2 underline underline-offset-4" href={PROFILE.links.email}><Mail size={18}/> Email</a>
+              <a className="inline-flex items-center gap-2 underline underline-offset-4" href={PROFILE.links.cv} target="_blank" rel="noreferrer"><FileDown size={18}/> Descargar CV</a>
+            </div>
+          </div>
+          <Card className="max-w-lg md:max-w-xl">
+            <div className="aspect-[3/4] w-full overflow-hidden rounded-xl">
+              <img className="h-full w-full object-cover" src="/assets/hero-jere.jpg" alt="Jeremías Regalzi" />
+            </div>
+            <p className="mt-3 text-sm text-zinc-700 dark:text-zinc-200">Foto de perfil.</p>
+          </Card>
+        </div>
+      </motion.div>
+    </header>
+  );
+}
+
+function Projects() {
+  return (
+    <Section id="projects" title="Proyectos">
+      <div className="grid md:grid-cols-2 gap-6">
+        {PROJECTS.map((p, i) => (
+          <motion.div key={p.title} initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.05 }}>
+            <Card>
+              <div className="aspect-video w-full overflow-hidden rounded-xl">
+                <img className="h-full w-full object-cover" src={p.image} alt={p.title} loading="lazy" />
+              </div>
+              <div className="mt-4">
+                <h3 className="text-lg font-semibold">{p.title}</h3>
+                <p className="mt-1 text-sm text-zinc-700 dark:text-zinc-200">{p.description}</p>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {p.stack.map((s) => <Tag key={s}>{s}</Tag>)}
+                </div>
+                <ul className="mt-3 list-disc pl-5 text-sm text-zinc-700 dark:text-zinc-200">
+                  {p.highlights.map((h) => <li key={h}>{h}</li>)}
+                </ul>
+                <div className="mt-4 flex items-center gap-4 text-sm">
+                  <a className="inline-flex items-center gap-2 underline underline-offset-4" href={p.repo} target="_blank" rel="noreferrer"><Github size={18}/> Código</a>
+                  <a className="inline-flex items-center gap-2 underline underline-offset-4" href={p.demo} target="_blank" rel="noreferrer"><ExternalLink size={18}/> Demo</a>
+                  <a className="inline-flex items-center gap-2 underline underline-offset-4" href="/proyectos/pirtech">Ver caso de estudio</a>
+                </div>
+              </div>
+            </Card>
+          </motion.div>
+        ))}
+      </div>
+    </Section>
+  );
+}
+
+function Experience() {
+  return (
+    <Section id="experience" title="Experiencia">
+      <div className="space-y-4">
+        {EXPERIENCE.map((e) => (
+          <Card key={e.company}>
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
+              <div>
+                <h3 className="font-semibold">{e.role}</h3>
+                <p className="text-sm text-zinc-700 dark:text-zinc-200">{e.company}</p>
+              </div>
+              <span className="text-sm text-zinc-700 dark:text-zinc-200">{e.period}</span>
+            </div>
+            <ul className="mt-3 list-disc pl-5 text-sm text-zinc-700 dark:text-zinc-200">
+              {e.bullets.map((b) => <li key={b}>{b}</li>)}
+            </ul>
+          </Card>
+        ))}
+      </div>
+    </Section>
+  );
+}
+
+function Education() {
+  return (
+    <Section id="education" title="Educación">
+      <div className="grid md:grid-cols-2 gap-4">
+        {EDUCATION.map((ed) => (
+          <Card key={ed.school}>
+            <h3 className="font-semibold">{ed.degree}</h3>
+            <p className="text-sm text-zinc-700 dark:text-zinc-200">{ed.school}</p>
+            <span className="text-sm text-zinc-700 dark:text-zinc-200">{ed.period}</span>
+          </Card>
+        ))}
+      </div>
+    </Section>
+  );
+}
+
+function Contact() {
+  return (
+    <Section id="contact" title="Contacto">
+      <Card>
+        <p className="text-zinc-800 dark:text-zinc-100">
+          ¿Te interesa colaborar o tenés una propuesta? Escribime por <a className="underline underline-offset-4" href={PROFILE.links.email}>email</a>,
+          mirá mi <a className="underline underline-offset-4" href={PROFILE.links.linkedin} target="_blank" rel="noreferrer">LinkedIn</a> o revisá mi <a className="underline underline-offset-4" href={PROFILE.links.github} target="_blank" rel="noreferrer">GitHub</a>.
+        </p>
+      </Card>
+    </Section>
+  );
+}
+
+function Footer() {
+  return (
+    <footer className="mt-16 border-t">
+      <div className="mx-auto max-w-6xl px-4 py-8 flex flex-col md:flex-row items-center justify-between gap-2 text-sm text-zinc-700 dark:text-zinc-200">
+        <span>© {new Date().getFullYear()} {PROFILE.name}</span>
+        <div className="flex items-center gap-4">
+          <a href={PROFILE.links.github} target="_blank" rel="noreferrer">GitHub</a>
+          <a href={PROFILE.links.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>
+          <a href={PROFILE.links.email}>Email</a>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+export default function Portfolio() {
+  return (
+    <div className="min-h-dvh bg-gradient-to-b from-slate-50 to-white dark:from-zinc-950 dark:to-zinc-900 text-zinc-900 dark:text-zinc-100">
+      <ScrollProgress/>
+      <Navbar />
+      <Hero />
+      <main className="mx-auto max-w-6xl px-4 space-y-14">
+        <Projects />
+        <Experience />
+        <Education />
+        <Contact />
+      </main>
+      <Footer />
+    </div>
+  );
+}
