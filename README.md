@@ -8,10 +8,6 @@ npm run dev
 npm run build && npm run preview
 ```
 
-## Edita tu contenido
-- `src/App.jsx`: PROFILE, PROJECTS, EXPERIENCE, EDUCATION
-- Coloca tu CV en `public/cv-jeremias-regalzi.pdf`
-
 ## Rutas
 - `/` — Home
 - `/proyectos/pirtech` — Caso de estudio PIRtech
