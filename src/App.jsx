@@ -118,7 +118,7 @@ function Card({ children, className = "" }) {
 function Navbar() {
   const [open, setOpen] = useState(false);
   const links = [
-    { href: "#about", label: "Sobre mí" },
+    { href: "#", label: "Sobre mí" },
     { href: "#projects", label: "Proyectos" },
     { href: "#experience", label: "Experiencia" },
     { href: "#education", label: "Educación" },
