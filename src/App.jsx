@@ -2,6 +2,8 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Github, Linkedin, Mail, ExternalLink, ChevronRight, FileDown } from "lucide-react";
 import ScrollProgress from "./ScrollProgress";
+import { Link } from "react-router-dom";
+
 
 const PROFILE = {
   name: "Jeremías Regalzi",
@@ -193,7 +195,10 @@ function Projects() {
                 <div className="mt-4 flex items-center gap-4 text-sm">
                   <a className="inline-flex items-center gap-2 underline underline-offset-4" href={p.repo} target="_blank" rel="noreferrer"><Github size={18}/> Código</a>
                   <a className="inline-flex items-center gap-2 underline underline-offset-4" href={p.demo} target="_blank" rel="noreferrer"><ExternalLink size={18}/> Demo</a>
-                  <a className="inline-flex items-center gap-2 underline underline-offset-4" href="/proyectos/pirtech">Ver caso de estudio</a>
+                  <Link className="inline-flex items-center gap-2 underline underline-offset-4"
+                        to="/proyectos/pirtech">
+                    Ver caso de estudio
+                  </Link>
                 </div>
               </div>
             </Card>
