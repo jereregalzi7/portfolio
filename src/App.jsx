@@ -7,22 +7,29 @@ import { Link } from "react-router-dom";
 
 const PROFILE = {
   name: "Jeremías Regalzi",
-  role: "Frontend & Full‑Stack Developer",
+  role: "Frontend & Full-Stack Developer",
   location: "CABA, AR",
   summary:
-    "Diseño interfaces frontend rápidas, claras y escalables con React + Tailwind. Egresado de Escuela Da Vinci. Actualmente cursando Análisis de Sistemas.",
+    "Soy desarrollador Frontend & Full-Stack con foco en la creación de interfaces claras, rápidas y funcionales utilizando React, Tailwind y Node.js. Egresado de Escuela Da Vinci en Diseño y Programación Web, actualmente curso Análisis de Sistemas para ampliar mi visión técnica y arquitectónica. Me motiva construir experiencias digitales que combinen buen diseño, rendimiento y escalabilidad.",
   links: {
     github: "https://github.com/jereregalzi7",
     linkedin: "https://www.linkedin.com/in/jeremias-regalzi-253417248/",
     email: "mailto:jereregalzi93@gmail.com",
     cv: "/cv-jeremias-regalzi.pdf"
   },
+  // badges de valores/forma de trabajo (3)
+  badges: [
+    { label: "UI limpia", emoji: "🎨" },
+    { label: "Código escalable", emoji: "🧩" },
+    { label: "Enfoque UX", emoji: "👀" },
+  ],
   skills: [
     "React","Vite","TailwindCSS","JavaScript","TypeScript",
     "Node.js","Express","Laravel","PHP","Firebase",
     "PostgreSQL","MySQL","MongoDB","Vue.js","Figma"
   ],
 };
+
 
 const PROJECTS = [
   {
@@ -141,16 +148,31 @@ function Navbar() {
 
 function Hero() {
   return (
-    <header className="mx-auto max-w-6xl px-4 pt-10 pb-12">
+    <header className="mx-auto max-w-6xl px-4 pt-4 md:pt-8 pb-10">
       <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+        <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
           <div>
             <h1 className="text-3xl md:text-5xl font-bold tracking-tight">
               {PROFILE.role} <span className="text-blue-700">/ Portfolio</span>
             </h1>
-            <p className="mt-4 max-w-2xl text-zinc-700 dark:text-zinc-200">
-              {PROFILE.summary}
-            </p>
+             {/* Sobre mí (texto mejorado) + badges de valores */}
+            <div className="mt-4 space-y-3">
+              <p className="max-w-2xl text-zinc-700 dark:text-zinc-200">
+                {PROFILE.summary}
+              </p>
+
+              <ul className="flex flex-wrap gap-2 text-sm">
+                {PROFILE.badges.map((b) => (
+                  <li
+                    key={b.label}
+                    className="inline-flex items-center gap-2 rounded-full border border-blue-200/60 bg-blue-50 px-3 py-1 text-blue-800
+                              dark:bg-blue-900/30 dark:text-blue-200">
+                    <span>{b.emoji}</span>
+                    <span>{b.label}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
             <div className="mt-6 flex flex-wrap gap-2">
               {PROFILE.skills.map((s) => (<Tag key={s}>{s}</Tag>))}
             </div>
@@ -165,7 +187,7 @@ function Hero() {
             <div className="aspect-[3/4] w-full overflow-hidden rounded-xl">
               <img className="h-full w-full object-cover" src="/assets/hero-jere.jpg" alt="Jeremías Regalzi" />
             </div>
-            <p className="mt-3 text-sm text-zinc-700 dark:text-zinc-200">Foto de perfil.</p>
+            <p className="mt-3 text-sm text-zinc-700 dark:text-zinc-200">Jeremías Regalzi</p>
           </Card>
         </div>
       </motion.div>
