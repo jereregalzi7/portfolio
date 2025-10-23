@@ -67,21 +67,11 @@ const EXPERIENCE = [
   {
     company: "Freelance",
     role: "Desarrollador Full‑Stack",
-    period: "2022 — Actualidad",
+    period: "Actualidad",
     bullets: [
       "Frontend con React + Tailwind y Vue.",
       "Backends con Node/Express y Laravel (REST, JWT auth, CRUD).",
       "BD: PostgreSQL/MySQL/MongoDB. Deploy en Netlify/Vercel/Render.",
-    ],
-  },
-  {
-    company: "Proyectos académicos — Escuela Da Vinci",
-    role: "Desarrollador Web",
-    period: "2022 — 2024",
-    bullets: [
-      "Apps con autenticación, subida de archivos e interfaces responsive.",
-      "Integración con Firebase y consumo de APIs.",
-      "Trabajo en equipo y control de versiones con Git/GitHub.",
     ],
   },
 ];
@@ -96,12 +86,12 @@ function Section({ id, title, children }) {
     <motion.section
       id={id}
       className="scroll-mt-24"
-      initial={{ opacity: 0, y: 18 }}
+      initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.4, ease: "easeOut" }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      viewport={{ once: true, amount: 0.2 }}
     >
-      <h2 className="text-2xl md:text-3xl font-semibold tracking-tight inline-flex items-center gap-2">
+      <h2 className="text-2xl md:text-3xl font-semibold tracking-tight bg-gradient-to-r from-blue-600 to-indigo-500 bg-clip-text text-transparent">
       <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">{title}</span>
       <span className="h-[3px] w-10 rounded-full bg-blue-500/70"></span>
     </h2>
@@ -128,7 +118,7 @@ function Navbar() {
     { href: "#contact", label: "Contacto" },
   ];
   return (
-    <div className="sticky top-0 z-30 bg-gradient-to-b from-white/90 to-white/40 dark:from-zinc-950/90 dark:to-zinc-950/40 backdrop-blur border-b relative">
+    <div className="sticky top-0 z-30 bg-gradient-to-r from-blue-600/10 via-indigo-600/10 to-transparent backdrop-blur border-b border-blue-500/20">
       <nav className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
         <a href="#" className="font-semibold tracking-tight">{PROFILE.name}</a>
         <button className="md:hidden" onClick={() => setOpen(!open)} aria-label="Abrir menú">
@@ -243,12 +233,12 @@ function Projects() {
 function Experience() {
   return (
     <Section id="experience" title="Experiencia">
-      <div className="space-y-4">
+      <div className="grid md:grid-cols-2 gap-6">
         {EXPERIENCE.map((e) => (
           <Card key={e.company}>
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
               <div>
-                <h3 className="font-semibold">{e.role}</h3>
+                <h3 className="font-semibold text-blue-700 dark:text-blue-300">{e.role}</h3>
                 <p className="text-sm text-zinc-700 dark:text-zinc-200">{e.company}</p>
               </div>
               <span className="text-sm text-zinc-700 dark:text-zinc-200">{e.period}</span>
@@ -263,7 +253,7 @@ function Experience() {
   );
 }
 
-function Education() {
+function Education() {  
   return (
     <Section id="education" title="Educación">
       <div className="grid md:grid-cols-2 gap-4">
@@ -289,6 +279,7 @@ function Contact() {
           data-netlify="true"
           netlify-honeypot="bot-field"
           className="grid md:grid-cols-2 gap-4"
+          action="/"
         >
           {/* Netlify needs this to identify the form */}
           <input type="hidden" name="form-name" value="contact" />
@@ -348,7 +339,7 @@ function Contact() {
 function Footer() {
   return (
     <footer className="mt-16 border-t">
-      <div className="mx-auto max-w-6xl px-4 py-8 flex flex-col md:flex-row items-center justify-between gap-2 text-sm text-zinc-700 dark:text-zinc-200">
+      <div className="mx-auto max-w-6xl px-4 py-8 flex flex-col md:flex-row items-center justify-between gap-2 text-sm text-zinc-700 dark:text-zinc-200 border-t border-blue-500/20 bg-gradient-to-r from-blue-900/10 via-indigo-800/10 to-transparent">
         <span>© {new Date().getFullYear()} {PROFILE.name}</span>
         <div className="flex items-center gap-4">
           <a href={PROFILE.links.github} target="_blank" rel="noreferrer">GitHub</a>

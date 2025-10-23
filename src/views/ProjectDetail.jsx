@@ -1,6 +1,11 @@
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
 export default function ProjectDetail() {
+    useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+
   return (
     <div className="min-h-dvh bg-gradient-to-b from-slate-50 to-white dark:from-zinc-950 dark:to-zinc-900 text-zinc-900 dark:text-zinc-100">
       <header className="mx-auto max-w-5xl px-4 py-10">
