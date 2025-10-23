@@ -101,7 +101,10 @@ function Section({ id, title, children }) {
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.4, ease: "easeOut" }}
     >
-      <h2 className="text-2xl md:text-3xl font-semibold tracking-tight">{title}</h2>
+      <h2 className="text-2xl md:text-3xl font-semibold tracking-tight inline-flex items-center gap-2">
+      <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">{title}</span>
+      <span className="h-[3px] w-10 rounded-full bg-blue-500/70"></span>
+    </h2>
       <div className="mt-4">{children}</div>
     </motion.section>
   );
@@ -125,7 +128,7 @@ function Navbar() {
     { href: "#contact", label: "Contacto" },
   ];
   return (
-    <div className="sticky top-0 z-30 bg-gradient-to-b from-white/90 to-white/40 dark:from-zinc-950/90 dark:to-zinc-950/40 backdrop-blur border-b">
+    <div className="sticky top-0 z-30 bg-gradient-to-b from-white/90 to-white/40 dark:from-zinc-950/90 dark:to-zinc-950/40 backdrop-blur border-b relative">
       <nav className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
         <a href="#" className="font-semibold tracking-tight">{PROFILE.name}</a>
         <button className="md:hidden" onClick={() => setOpen(!open)} aria-label="Abrir menú">
@@ -134,6 +137,12 @@ function Navbar() {
         <ul className="hidden md:flex gap-6 text-sm">
           {links.map((l) => (<li key={l.href}><a className="hover:underline underline-offset-4" href={l.href}>{l.label}</a></li>))}
         </ul>
+        <img
+          src="/accents/dots.svg"
+          alt=""
+          aria-hidden="true"
+          className="absolute right-4 top-1/2 hidden -translate-y-1/2 opacity-70 md:block"
+        />
       </nav>
       {open && (
         <div className="md:hidden border-t">
@@ -165,8 +174,8 @@ function Hero() {
                 {PROFILE.badges.map((b) => (
                   <li
                     key={b.label}
-                    className="inline-flex items-center gap-2 rounded-full border border-blue-200/60 bg-blue-50 px-3 py-1 text-blue-800
-                              dark:bg-blue-900/30 dark:text-blue-200">
+                    className="inline-flex items-center gap-2 rounded-full border border-blue-200/60 bg-blue-100/60 px-3 py-1 text-blue-900
+                              dark:bg-blue-900/40 dark:text-blue-100">
                     <span>{b.emoji}</span>
                     <span>{b.label}</span>
                   </li>
@@ -183,8 +192,8 @@ function Hero() {
               <a className="inline-flex items-center gap-2 underline underline-offset-4" href={PROFILE.links.cv} target="_blank" rel="noreferrer"><FileDown size={18}/> Descargar CV</a>
             </div>
           </div>
-          <Card className="max-w-lg md:max-w-xl">
-            <div className="aspect-[3/4] w-full overflow-hidden rounded-xl">
+          <Card className="max-w-md md:max-w-lg">
+            <div className="aspect-[4/5] w-full overflow-hidden rounded-xl md:h-[420px]">
               <img className="h-full w-full object-cover" src="/assets/hero-jere.jpg" alt="Jeremías Regalzi" />
             </div>
             <p className="mt-3 text-sm text-zinc-700 dark:text-zinc-200">Jeremías Regalzi</p>
@@ -274,11 +283,64 @@ function Contact() {
   return (
     <Section id="contact" title="Contacto">
       <Card>
-        <p className="text-zinc-800 dark:text-zinc-100">
-          ¿Te interesa colaborar o tenés una propuesta? Escribime por <a className="underline underline-offset-4" href={PROFILE.links.email}>email</a>,
-          mirá mi <a className="underline underline-offset-4" href={PROFILE.links.linkedin} target="_blank" rel="noreferrer">LinkedIn</a> o revisá mi <a className="underline underline-offset-4" href={PROFILE.links.github} target="_blank" rel="noreferrer">GitHub</a>.
-        </p>
-      </Card>
+        <form
+          name="contact"
+          method="POST"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+          className="grid md:grid-cols-2 gap-4"
+        >
+          {/* Netlify needs this to identify the form */}
+          <input type="hidden" name="form-name" value="contact" />
+          {/* Honeypot (spam) */}
+          <p className="hidden">
+            <label>Don’t fill this out: <input name="bot-field" /></label>
+          </p>
+
+          <div className="grid gap-2">
+            <label className="text-sm text-zinc-700 dark:text-zinc-200">Nombre</label>
+            <input
+              name="name"
+              type="text"
+              required
+              className="rounded-xl border bg-white/70 dark:bg-zinc-900/70 px-3 py-2 outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder="Tu nombre"
+            />
+          </div>
+
+          <div className="grid gap-2">
+            <label className="text-sm text-zinc-700 dark:text-zinc-200">Email</label>
+            <input
+              name="email"
+              type="email"
+              required
+              className="rounded-xl border bg-white/70 dark:bg-zinc-900/70 px-3 py-2 outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder="tunombre@email.com"
+            />
+          </div>
+
+          <div className="grid gap-2 md:col-span-2">
+            <label className="text-sm text-zinc-700 dark:text-zinc-200">Mensaje</label>
+            <textarea
+              name="message"
+              rows={5}
+              required
+              className="rounded-xl border bg-white/70 dark:bg-zinc-900/70 px-3 py-2 outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder="Contame brevemente en qué puedo ayudarte…"
+            />
+          </div>
+
+          <div className="md:col-span-2">
+            <button
+              type="submit"
+              className="inline-flex items-center justify-center rounded-xl bg-blue-600 px-4 py-2 text-white hover:bg-blue-700 transition-colors"
+            >
+              Enviar mensaje
+            </button>
+          </div>
+        </form>
+</Card>
+
     </Section>
   );
 }
