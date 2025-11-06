@@ -30,7 +30,6 @@ const PROFILE = {
   ],
 };
 
-
 const PROJECTS = [
   {
     title: "PIRtech — Catálogo + Presupuesto",
@@ -274,12 +273,13 @@ function Contact() {
     <Section id="contact" title="Contacto">
       <Card>
         <form
-          name="contact"
-          method="POST"
-          data-netlify="true"
-          netlify-honeypot="bot-field"
-          className="grid md:grid-cols-2 gap-4"
-          action="/"
+            name="contact"
+            method="POST"
+            data-netlify="true"
+            netlify-honeypot="bot-field"
+            acceptCharset="UTF-8"
+            action="/"
+            className="grid md:grid-cols-2 gap-4"
         >
           {/* Netlify needs this to identify the form */}
           <input type="hidden" name="form-name" value="contact" />
