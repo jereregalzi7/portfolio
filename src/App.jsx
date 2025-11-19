@@ -275,8 +275,8 @@ function Contact() {
         <form
             name="contact"
             method="POST"
-            data-netlify="true"
-            netlify-honeypot="bot-field"
+            /* data-netlify="true"
+            netlify-honeypot="bot-field" */
             acceptCharset="UTF-8"
             action="/success.html"
             className="grid md:grid-cols-2 gap-4"
