@@ -275,18 +275,12 @@ function Contact() {
         <form
             name="contact"
             method="POST"
-            data-netlify="true"
-            /*netlify-honeypot="bot-field" */
-            acceptCharset="UTF-8"
-            action="/success.html"
+            action="https://formsubmit.co/jereregalzi93@gmail.com"
             className="grid md:grid-cols-2 gap-4"
         >
-          {/* Netlify needs this to identify the form */}
-          <input type="hidden" name="form-name" value="contact" />
-          {/* Honeypot (spam) */}
-          <p className="hidden">
-            <label>Don’t fill this out: <input name="bot-field" /></label>
-          </p>
+          {/* Configuración FormSubmit */}
+          <input type="hidden" name="_next" value="https://jeremias-regalzi-portfolio.netlify.app/success.html" />
+          <input type="hidden" name="_captcha" value="false" />
 
           <div className="grid gap-2">
             <label className="text-sm text-zinc-700 dark:text-zinc-200">Nombre</label>
