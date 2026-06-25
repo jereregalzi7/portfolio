@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
-import { ExternalLink, Github } from "lucide-react";
+import { Lock } from "lucide-react";
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet-async";
 
@@ -53,58 +53,86 @@ function SectionBlock({ title, children, delay = 0 }) {
   );
 }
 
-const FEATURES = [
+const MODULES = [
   {
     id: "01",
-    name: "Catálogo",
-    desc: "200+ productos con 10+ categorías, filtros avanzados, ordenamiento y vista grid/lista.",
+    name: "Caja",
+    desc: "Registro de movimientos de caja, apertura/cierre, balance diario.",
   },
   {
     id: "02",
-    name: "PC Builder",
-    desc: "Armá tu PC paso a paso (8 componentes), verificación automática de compatibilidad y precio total en tiempo real.",
+    name: "Clientes",
+    desc: "ABM de clientes con historial de compras y datos de contacto.",
   },
   {
     id: "03",
-    name: "Comparador",
-    desc: "Comparación side-by-side de productos con specs técnicas.",
+    name: "Ventas",
+    desc: "Gestión de ventas, emisión de comprobantes y seguimiento.",
   },
   {
     id: "04",
-    name: "Carrito",
-    desc: "Carrito de compras persistente con integración MercadoPago.",
+    name: "Productos",
+    desc: "Catálogo con stock, precios y export/import vía Excel.",
   },
   {
     id: "05",
-    name: "Mi cuenta",
-    desc: "Registro, login, historial de pedidos, favoritos y configuración de datos personales.",
+    name: "Proveedores",
+    desc: "Registro de proveedores y vinculación con órdenes de compra.",
   },
   {
     id: "06",
-    name: "Coming soon",
-    desc: "Countdown animado con suscripción por email para el lanzamiento público.",
+    name: "Órdenes de compra",
+    desc: "Creación y seguimiento de órdenes, generación de PDF.",
+  },
+  {
+    id: "07",
+    name: "Gestión de usuarios",
+    desc: "Roles y permisos, verificación de email con Laravel Breeze.",
   },
 ];
 
 const STACK_LAYERS = [
-  { layer: "framework", items: ["Next.js (App Router)", "React", "TypeScript"] },
-  { layer: "estilos", items: ["Tailwind CSS"] },
-  { layer: "deploy", items: ["Vercel"] },
-  { layer: "backend", items: ["Laravel (PHP)", "REST API interna"] },
-  { layer: "base de datos", items: ["PostgreSQL (prod · Render)", "MySQL (local dev)"] },
+  {
+    layer: "framework",
+    items: ["Laravel 12", "PHP 8.2"],
+  },
+  {
+    layer: "frontend",
+    items: ["Blade templates", "Alpine.js v3", "Tailwind CSS v3"],
+  },
+  {
+    layer: "build",
+    items: ["Vite 7", "laravel-vite-plugin"],
+  },
+  {
+    layer: "auth",
+    items: ["Laravel Breeze", "Session-based", "Email verification"],
+  },
+  {
+    layer: "base de datos",
+    items: ["PostgreSQL (prod · Render)", "MySQL (local dev)"],
+  },
+  {
+    layer: "storage & archivos",
+    items: ["Cloudflare R2", "flysystem-aws-s3-v3", "RECEIPTS_DISK configurable"],
+  },
+  {
+    layer: "exportación",
+    items: ["barryvdh/laravel-dompdf", "maatwebsite/excel 3.1"],
+  },
 ];
 
-export default function ProjectDetail() {
+export default function ProjectDetailSistema() {
   useEffect(() => { window.scrollTo({ top: 0, behavior: "smooth" }); }, []);
 
   return (
     <div className="relative min-h-dvh bg-stone-50 dark:bg-stone-950 text-stone-900 dark:text-stone-100">
       <Helmet>
-        <title>PIRtech E-commerce Gamer — Caso de estudio · Jeremías Regalzi</title>
-        <meta name="description" content="Caso de estudio: tienda online para PIRtech con Next.js, TypeScript y Tailwind. PC Builder, catálogo con filtros, comparador y carrito." />
-        <meta property="og:title" content="PIRtech E-commerce Gamer — Caso de estudio" />
-        <meta property="og:description" content="Tienda online para PIRtech con Next.js, TypeScript y Tailwind. PC Builder, catálogo, comparador y carrito." />
-        <meta property="og:url" content="https://jeremias-regalzi-portfolio.netlify.app/proyectos/pirtech" />
+        <title>PIRtech Sistema Interno — Caso de estudio · Jeremías Regalzi</title>
+        <meta name="description" content="Caso de estudio: sistema de gestión empresarial para PIRtech con Laravel 12, Alpine.js, PostgreSQL y 7 módulos integrados." />
+        <meta property="og:title" content="PIRtech Sistema Interno — Caso de estudio" />
+        <meta property="og:description" content="Sistema ERP interno con Laravel 12, Alpine.js, PostgreSQL. Caja, ventas, clientes, productos, proveedores, órdenes y usuarios." />
+        <meta property="og:url" content="https://jeremias-regalzi-portfolio.netlify.app/proyectos/pirtech-sistema" />
       </Helmet>
       <NoiseBg />
       <BackgroundOrbs />
@@ -125,41 +153,30 @@ export default function ProjectDetail() {
       <header className="relative z-10 mx-auto max-w-5xl px-4 pt-12 pb-10">
         <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.45 }}>
           <p className="font-mono text-amber-500 text-sm mb-3 tracking-wide">
-            <span className="text-stone-500">$</span> open case-study/pirtech
+            <span className="text-stone-500">$</span> open case-study/pirtech-sistema
           </p>
-          <h1 className="text-3xl md:text-4xl font-bold tracking-tight">PIRtech — E-commerce Gamer</h1>
+          <h1 className="text-3xl md:text-4xl font-bold tracking-tight">PIRtech — Sistema Interno</h1>
           <div className="mt-3 h-[3px] w-14 rounded-full bg-gradient-to-r from-amber-500 to-orange-400" />
           <p className="mt-5 text-stone-600 dark:text-stone-300 max-w-3xl leading-relaxed">
-            Tienda online completa para PIRtech, la tienda gamer más completa de Argentina.
-            PCs armadas, componentes, periféricos y más — con catálogo filtrable, PC Builder
-            paso a paso, comparador y sistema de cuenta de usuario. Actualmente en fase de
-            lanzamiento en <span className="font-mono text-amber-500">pirtech.com.ar</span>.
+            Sistema de gestión empresarial completo desarrollado para PIRtech. Cubre todo el ciclo
+            operativo de la empresa: caja, clientes, ventas, stock, proveedores y administración
+            de usuarios — todo integrado en una sola plataforma web con Laravel 12.
           </p>
-          <div className="mt-4 flex gap-4 font-mono text-xs">
-            <a
-              href="https://www.pirtech.com.ar/" target="_blank" rel="noreferrer"
-              className="inline-flex items-center gap-1.5 text-stone-500 hover:text-amber-500 transition-colors"
-            >
-              <ExternalLink size={12} /> pirtech.com.ar
-            </a>
-            <a
-              href="https://github.com/jereregalzi7/pirtech" target="_blank" rel="noreferrer"
-              className="inline-flex items-center gap-1.5 text-stone-500 hover:text-amber-500 transition-colors"
-            >
-              <Github size={12} /> v1 (catálogo original)
-            </a>
+          <div className="mt-4 flex items-center gap-2 font-mono text-xs text-stone-500">
+            <Lock size={11} className="text-amber-500/70" />
+            <span>Repositorio y demo privados — sistema interno de cliente</span>
           </div>
         </motion.div>
       </header>
 
       <main className="relative z-10 mx-auto max-w-5xl px-4 pb-24 space-y-14">
 
-        {/* Features */}
-        <SectionBlock title="Funcionalidades">
+        {/* Modules */}
+        <SectionBlock title="Módulos del sistema">
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
-            {FEATURES.map((f, i) => (
+            {MODULES.map((m, i) => (
               <motion.div
-                key={f.id}
+                key={m.id}
                 initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.07, duration: 0.4 }}
@@ -167,10 +184,10 @@ export default function ProjectDetail() {
                 className="rounded-xl border border-stone-200/70 dark:border-stone-800/70 bg-white/80 dark:bg-stone-900/70 backdrop-blur p-4"
               >
                 <div className="flex items-center gap-2 mb-2">
-                  <span className="font-mono text-xs text-amber-500/50 select-none">{f.id}</span>
-                  <h3 className="font-semibold text-sm text-stone-900 dark:text-stone-100">{f.name}</h3>
+                  <span className="font-mono text-xs text-amber-500/50 select-none">{m.id}</span>
+                  <h3 className="font-semibold text-sm text-stone-900 dark:text-stone-100">{m.name}</h3>
                 </div>
-                <p className="text-xs text-stone-500 dark:text-stone-500 leading-relaxed font-mono">{f.desc}</p>
+                <p className="text-xs text-stone-500 dark:text-stone-500 leading-relaxed font-mono">{m.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -178,9 +195,6 @@ export default function ProjectDetail() {
 
         {/* Stack */}
         <SectionBlock title="Stack & arquitectura" delay={0.05}>
-          <p className="text-sm text-stone-500 dark:text-stone-400 font-mono mb-4">
-            El frontend en Next.js se comunica con el sistema interno existente (Laravel) a través de una API REST interna — autenticada y creada específicamente para este proyecto.
-          </p>
           <div className="space-y-3">
             {STACK_LAYERS.map((layer, i) => (
               <motion.div
@@ -202,18 +216,18 @@ export default function ProjectDetail() {
           </div>
         </SectionBlock>
 
-        {/* Highlights */}
+        {/* Technical highlights */}
         <SectionBlock title="Detalles técnicos" delay={0.05}>
           <ul className="space-y-2 font-mono text-sm text-stone-600 dark:text-stone-400">
             {[
-              "App Router de Next.js con layouts anidados y páginas server/client según necesidad.",
-              "TypeScript end-to-end para tipar productos, variantes, órdenes y usuarios.",
-              "PC Builder con lógica de compatibilidad: socket, TDP, factor de forma y más.",
-              "Precio en tiempo real actualizado con cotización del dólar oficial.",
-              "Comparador: tabla dinámica de specs generada a partir del catálogo.",
-              "Integración con MercadoPago para checkout.",
-              "API REST en Laravel consumida desde Next.js — rutas autenticadas con tokens.",
-              "Deploy en Vercel con CI/CD automático desde rama main.",
+              "Auth session-based con Laravel Breeze y verificación de email.",
+              "Layouts separados para usuarios autenticados y guests (app.blade.php / guest.blade.php).",
+              "Alpine.js v3 para interactividad: modales, toggles y comportamiento dinámico — sin Vue ni React.",
+              "Axios disponible globalmente para requests AJAX desde Blade.",
+              "Export de productos vía maatwebsite/excel 3.1 (import/export).",
+              "Generación de PDF con barryvdh/laravel-dompdf para órdenes de compra.",
+              "File storage configurable: disco local en dev, Cloudflare R2 en producción (RECEIPTS_DISK env).",
+              "DB dual: MySQL en desarrollo local, PostgreSQL en producción (Render).",
             ].map((item) => (
               <li key={item} className="flex items-start gap-2">
                 <span className="text-amber-500 flex-shrink-0 mt-px">›</span>
@@ -223,33 +237,17 @@ export default function ProjectDetail() {
           </ul>
         </SectionBlock>
 
-        {/* Gallery */}
+        {/* Screenshots placeholder */}
         <SectionBlock title="Capturas" delay={0.05}>
-          <div className="grid md:grid-cols-2 gap-4">
-            <img
-              src="/assets/pirtech-home.png"
-              alt="PIRtech — Home"
-              loading="lazy"
-              className="rounded-xl border border-stone-200/60 dark:border-stone-800/60 w-full"
-            />
-            <img
-              src="/assets/pirtech-catalogo.png"
-              alt="PIRtech — Catálogo"
-              loading="lazy"
-              className="rounded-xl border border-stone-200/60 dark:border-stone-800/60 w-full"
-            />
-            <img
-              src="/assets/pirtech-builder.png"
-              alt="PIRtech — PC Builder"
-              loading="lazy"
-              className="rounded-xl border border-stone-200/60 dark:border-stone-800/60 w-full"
-            />
-            <img
-              src="/assets/pirtech-proximamente.png"
-              alt="PIRtech — Coming soon"
-              loading="lazy"
-              className="rounded-xl border border-stone-200/60 dark:border-stone-800/60 w-full"
-            />
+          <div className="rounded-xl border border-dashed border-stone-300/60 dark:border-stone-700/40 bg-stone-100/50 dark:bg-stone-900/30 aspect-video flex items-center justify-center">
+            <div className="text-center space-y-2">
+              <p className="font-mono text-xs text-stone-400 dark:text-stone-600">
+                <span className="text-amber-500/60">// </span>capturas pendientes
+              </p>
+              <p className="font-mono text-xs text-stone-400 dark:text-stone-700">
+                datos de cliente — versión anonimizada próximamente
+              </p>
+            </div>
           </div>
         </SectionBlock>
 

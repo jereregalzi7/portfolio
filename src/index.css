@@ -1,6 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-/* Smooth scroll + focus */
-html{scroll-behavior:smooth;}
-:focus-visible{outline:2px solid rgb(59 130 246); outline-offset:2px;}
+html { scroll-behavior: smooth; }
+:focus-visible { outline: 2px solid rgb(59 130 246); outline-offset: 2px; }
+@media (pointer: fine) {
+  * { cursor: none !important; }
+}

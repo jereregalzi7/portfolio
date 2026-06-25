@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
-import { ExternalLink, Github } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet-async";
 
@@ -53,58 +53,34 @@ function SectionBlock({ title, children, delay = 0 }) {
   );
 }
 
-const FEATURES = [
-  {
-    id: "01",
-    name: "Catálogo",
-    desc: "200+ productos con 10+ categorías, filtros avanzados, ordenamiento y vista grid/lista.",
-  },
-  {
-    id: "02",
-    name: "PC Builder",
-    desc: "Armá tu PC paso a paso (8 componentes), verificación automática de compatibilidad y precio total en tiempo real.",
-  },
-  {
-    id: "03",
-    name: "Comparador",
-    desc: "Comparación side-by-side de productos con specs técnicas.",
-  },
-  {
-    id: "04",
-    name: "Carrito",
-    desc: "Carrito de compras persistente con integración MercadoPago.",
-  },
-  {
-    id: "05",
-    name: "Mi cuenta",
-    desc: "Registro, login, historial de pedidos, favoritos y configuración de datos personales.",
-  },
-  {
-    id: "06",
-    name: "Coming soon",
-    desc: "Countdown animado con suscripción por email para el lanzamiento público.",
-  },
+const SECTIONS = [
+  { id: "01", name: "Inicio", desc: "Hero con propuesta de valor, card de estilo destacada y CTAs directos a estilos y packs." },
+  { id: "02", name: "Nosotros", desc: "Historia y propuesta diferencial de Rebrotar como empresa de ambientación sin mantenimiento." },
+  { id: "03", name: "Cómo funciona", desc: "Proceso de 4 pasos: explorar estilos → elegir opción → cargar datos del espacio → coordinar propuesta." },
+  { id: "04", name: "Estilos", desc: "Catálogo de propuestas visuales (Tropical, Minimalista, etc.) con fotos reales de instalaciones." },
+  { id: "05", name: "Rubros", desc: "Soluciones organizadas por tipo de negocio: cafeterías, oficinas, salones de eventos, locales de estética." },
+  { id: "06", name: "Packs", desc: "Paquetes de ambientación combinados, listos para solicitar con un formulario directo." },
+  { id: "07", name: "Contacto", desc: "Formulario de solicitud de propuesta con canales alternativos (WhatsApp y email)." },
 ];
 
 const STACK_LAYERS = [
-  { layer: "framework", items: ["Next.js (App Router)", "React", "TypeScript"] },
-  { layer: "estilos", items: ["Tailwind CSS"] },
+  { layer: "framework", items: ["Next.js (App Router)", "React 19"] },
+  { layer: "lenguaje", items: ["TypeScript"] },
+  { layer: "estilos", items: ["Tailwind CSS v4", "@tailwindcss/postcss"] },
   { layer: "deploy", items: ["Vercel"] },
-  { layer: "backend", items: ["Laravel (PHP)", "REST API interna"] },
-  { layer: "base de datos", items: ["PostgreSQL (prod · Render)", "MySQL (local dev)"] },
 ];
 
-export default function ProjectDetail() {
+export default function ProjectDetailRebrotar() {
   useEffect(() => { window.scrollTo({ top: 0, behavior: "smooth" }); }, []);
 
   return (
     <div className="relative min-h-dvh bg-stone-50 dark:bg-stone-950 text-stone-900 dark:text-stone-100">
       <Helmet>
-        <title>PIRtech E-commerce Gamer — Caso de estudio · Jeremías Regalzi</title>
-        <meta name="description" content="Caso de estudio: tienda online para PIRtech con Next.js, TypeScript y Tailwind. PC Builder, catálogo con filtros, comparador y carrito." />
-        <meta property="og:title" content="PIRtech E-commerce Gamer — Caso de estudio" />
-        <meta property="og:description" content="Tienda online para PIRtech con Next.js, TypeScript y Tailwind. PC Builder, catálogo, comparador y carrito." />
-        <meta property="og:url" content="https://jeremias-regalzi-portfolio.netlify.app/proyectos/pirtech" />
+        <title>Rebrotar — Caso de estudio · Jeremías Regalzi</title>
+        <meta name="description" content="Caso de estudio: sitio institucional para Rebrotar, empresa de ambientación comercial. Next.js, TypeScript y Tailwind v4." />
+        <meta property="og:title" content="Rebrotar — Caso de estudio" />
+        <meta property="og:description" content="Sitio de ambientación comercial con plantas artificiales. Next.js App Router, TypeScript, Tailwind v4, Vercel." />
+        <meta property="og:url" content="https://jeremias-regalzi-portfolio.netlify.app/proyectos/rebrotar" />
       </Helmet>
       <NoiseBg />
       <BackgroundOrbs />
@@ -125,28 +101,22 @@ export default function ProjectDetail() {
       <header className="relative z-10 mx-auto max-w-5xl px-4 pt-12 pb-10">
         <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.45 }}>
           <p className="font-mono text-amber-500 text-sm mb-3 tracking-wide">
-            <span className="text-stone-500">$</span> open case-study/pirtech
+            <span className="text-stone-500">$</span> open case-study/rebrotar
           </p>
-          <h1 className="text-3xl md:text-4xl font-bold tracking-tight">PIRtech — E-commerce Gamer</h1>
+          <h1 className="text-3xl md:text-4xl font-bold tracking-tight">Rebrotar — Ambientación Comercial</h1>
           <div className="mt-3 h-[3px] w-14 rounded-full bg-gradient-to-r from-amber-500 to-orange-400" />
           <p className="mt-5 text-stone-600 dark:text-stone-300 max-w-3xl leading-relaxed">
-            Tienda online completa para PIRtech, la tienda gamer más completa de Argentina.
-            PCs armadas, componentes, periféricos y más — con catálogo filtrable, PC Builder
-            paso a paso, comparador y sistema de cuenta de usuario. Actualmente en fase de
-            lanzamiento en <span className="font-mono text-amber-500">pirtech.com.ar</span>.
+            Sitio institucional para Rebrotar, empresa de ambientación comercial con plantas artificiales.
+            El desafío: comunicar una estética cuidada, transmitir confianza profesional y facilitar
+            que potenciales clientes soliciten una propuesta sin fricción.
+            Mi rol: diseño + desarrollo frontend end-to-end.
           </p>
-          <div className="mt-4 flex gap-4 font-mono text-xs">
+          <div className="mt-4">
             <a
-              href="https://www.pirtech.com.ar/" target="_blank" rel="noreferrer"
-              className="inline-flex items-center gap-1.5 text-stone-500 hover:text-amber-500 transition-colors"
+              href="https://rebrotar.com.ar/" target="_blank" rel="noreferrer"
+              className="inline-flex items-center gap-1.5 font-mono text-xs text-stone-500 hover:text-amber-500 transition-colors"
             >
-              <ExternalLink size={12} /> pirtech.com.ar
-            </a>
-            <a
-              href="https://github.com/jereregalzi7/pirtech" target="_blank" rel="noreferrer"
-              className="inline-flex items-center gap-1.5 text-stone-500 hover:text-amber-500 transition-colors"
-            >
-              <Github size={12} /> v1 (catálogo original)
+              <ExternalLink size={12} /> rebrotar.com.ar
             </a>
           </div>
         </motion.div>
@@ -154,12 +124,12 @@ export default function ProjectDetail() {
 
       <main className="relative z-10 mx-auto max-w-5xl px-4 pb-24 space-y-14">
 
-        {/* Features */}
-        <SectionBlock title="Funcionalidades">
+        {/* Sections */}
+        <SectionBlock title="Secciones del sitio">
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
-            {FEATURES.map((f, i) => (
+            {SECTIONS.map((s, i) => (
               <motion.div
-                key={f.id}
+                key={s.id}
                 initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.07, duration: 0.4 }}
@@ -167,10 +137,10 @@ export default function ProjectDetail() {
                 className="rounded-xl border border-stone-200/70 dark:border-stone-800/70 bg-white/80 dark:bg-stone-900/70 backdrop-blur p-4"
               >
                 <div className="flex items-center gap-2 mb-2">
-                  <span className="font-mono text-xs text-amber-500/50 select-none">{f.id}</span>
-                  <h3 className="font-semibold text-sm text-stone-900 dark:text-stone-100">{f.name}</h3>
+                  <span className="font-mono text-xs text-amber-500/50 select-none">{s.id}</span>
+                  <h3 className="font-semibold text-sm text-stone-900 dark:text-stone-100">{s.name}</h3>
                 </div>
-                <p className="text-xs text-stone-500 dark:text-stone-500 leading-relaxed font-mono">{f.desc}</p>
+                <p className="text-xs text-stone-500 dark:text-stone-500 leading-relaxed font-mono">{s.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -178,9 +148,6 @@ export default function ProjectDetail() {
 
         {/* Stack */}
         <SectionBlock title="Stack & arquitectura" delay={0.05}>
-          <p className="text-sm text-stone-500 dark:text-stone-400 font-mono mb-4">
-            El frontend en Next.js se comunica con el sistema interno existente (Laravel) a través de una API REST interna — autenticada y creada específicamente para este proyecto.
-          </p>
           <div className="space-y-3">
             {STACK_LAYERS.map((layer, i) => (
               <motion.div
@@ -202,18 +169,16 @@ export default function ProjectDetail() {
           </div>
         </SectionBlock>
 
-        {/* Highlights */}
-        <SectionBlock title="Detalles técnicos" delay={0.05}>
+        {/* Retos */}
+        <SectionBlock title="Retos & decisiones" delay={0.05}>
           <ul className="space-y-2 font-mono text-sm text-stone-600 dark:text-stone-400">
             {[
-              "App Router de Next.js con layouts anidados y páginas server/client según necesidad.",
-              "TypeScript end-to-end para tipar productos, variantes, órdenes y usuarios.",
-              "PC Builder con lógica de compatibilidad: socket, TDP, factor de forma y más.",
-              "Precio en tiempo real actualizado con cotización del dólar oficial.",
-              "Comparador: tabla dinámica de specs generada a partir del catálogo.",
-              "Integración con MercadoPago para checkout.",
-              "API REST en Laravel consumida desde Next.js — rutas autenticadas con tokens.",
-              "Deploy en Vercel con CI/CD automático desde rama main.",
+              "Branding cálido (crema + naranja + verde) que transmita naturalidad sin perder profesionalismo — alejado de paletas genéricas.",
+              "Estructura de navegación pensada para la conversión: el CTA 'Solicitar propuesta' visible en todo momento desde el navbar.",
+              "Formulario enriquecido con rubro, tamaño del espacio y motivo de consulta — para que Rebrotar reciba leads calificados.",
+              "Sección 'Cómo funciona' con proceso de 4 pasos para reducir la fricción de clientes que no conocen el servicio.",
+              "Botón flotante de WhatsApp para capturar consultas rápidas en mobile sin requerir llegar al formulario.",
+              "Next.js App Router con Tailwind v4 — estructura de carpetas en app/ por cada ruta.",
             ].map((item) => (
               <li key={item} className="flex items-start gap-2">
                 <span className="text-amber-500 flex-shrink-0 mt-px">›</span>
@@ -227,29 +192,31 @@ export default function ProjectDetail() {
         <SectionBlock title="Capturas" delay={0.05}>
           <div className="grid md:grid-cols-2 gap-4">
             <img
-              src="/assets/pirtech-home.png"
-              alt="PIRtech — Home"
+              src="/assets/rebrotar-home.png"
+              alt="Rebrotar — Home"
               loading="lazy"
               className="rounded-xl border border-stone-200/60 dark:border-stone-800/60 w-full"
             />
             <img
-              src="/assets/pirtech-catalogo.png"
-              alt="PIRtech — Catálogo"
+              src="/assets/rebrotar-como-funciona.png"
+              alt="Rebrotar — Cómo funciona"
               loading="lazy"
               className="rounded-xl border border-stone-200/60 dark:border-stone-800/60 w-full"
             />
             <img
-              src="/assets/pirtech-builder.png"
-              alt="PIRtech — PC Builder"
+              src="/assets/rebrotar-contacto.png"
+              alt="Rebrotar — Contacto"
               loading="lazy"
-              className="rounded-xl border border-stone-200/60 dark:border-stone-800/60 w-full"
+              className="rounded-xl border border-stone-200/60 dark:border-stone-800/60 w-full md:col-span-2"
             />
-            <img
-              src="/assets/pirtech-proximamente.png"
-              alt="PIRtech — Coming soon"
-              loading="lazy"
-              className="rounded-xl border border-stone-200/60 dark:border-stone-800/60 w-full"
-            />
+          </div>
+          <div className="mt-4">
+            <a
+              href="https://rebrotar.com.ar/" target="_blank" rel="noreferrer"
+              className="inline-flex items-center gap-1.5 font-mono text-xs text-amber-500 hover:text-amber-400 transition-colors"
+            >
+              <ExternalLink size={11} /> ver sitio en vivo
+            </a>
           </div>
         </SectionBlock>
 
